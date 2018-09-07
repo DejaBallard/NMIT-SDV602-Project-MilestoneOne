@@ -50,34 +50,34 @@ public class GameModelScript : MonoBehaviour {
     }
     public void MakeGameScenes() {
         _A1Scene = new SceneScript
-            ("Quardent: A1");
-        _A2Scene = new SceneScript("Quardent: A2");
-        _A3Scene = new SceneScript("Quardent: A3");
-        _A4Scene = new SceneScript("Quardent: A4");
-        _A5Scene = new SceneScript("Quardent: A5");
-        _B1Scene = new SceneScript("Quardent: B1");
-        _B2Scene = new SceneScript("Quardent: B2");
-        _B3Scene = new SceneScript("Quardent: B3");
-        _B4Scene = new SceneScript("Quardent: B4");
-        _B5Scene = new SceneScript("Quardent: B5");
-        _C1Scene = new SceneScript("Quardent: C1");
-        _C2Scene = new SceneScript("Quardent: C2");
-        _C3Scene = new SceneScript("Quardent: C3");
-        _C4Scene = new SceneScript("Quardent: C4");
-        _C5Scene = new SceneScript("Quardent: C5");
-        _D1Scene = new SceneScript("Quardent: D1");
-        _D2Scene = new SceneScript("Quardent: D2");
-        _D3Scene = new SceneScript("Quardent: D3");
-        _D4Scene = new SceneScript("Quardent: D4");
-        _D5Scene = new SceneScript("Quardent: D5");
-        _E1Scene = new SceneScript("Quardent: E1");
-        _E2Scene = new SceneScript("Quardent: E2");
+            ("Quardent: A1", "A1");
+        _A2Scene = new SceneScript("Quardent: A2","A2");
+        _A3Scene = new SceneScript("Quardent: A3", "A3");
+        _A4Scene = new SceneScript("Quardent: A4", "A4");
+        _A5Scene = new SceneScript("Quardent: A5", "A5");
+        _B1Scene = new SceneScript("Quardent: B1", "B1");
+        _B2Scene = new SceneScript("Quardent: B2", "B2");
+        _B3Scene = new SceneScript("Quardent: B3", "B3");
+        _B4Scene = new SceneScript("Quardent: B4", "B4");
+        _B5Scene = new SceneScript("Quardent: B5","B5");
+        _C1Scene = new SceneScript("Quardent: C1", "C1");
+        _C2Scene = new SceneScript("Quardent: C2", "C2");
+        _C3Scene = new SceneScript("Quardent: C3", "C3");
+        _C4Scene = new SceneScript("Quardent: C4", "C4");
+        _C5Scene = new SceneScript("Quardent: C5", "C5");
+        _D1Scene = new SceneScript("Quardent: D1", "D5");
+        _D2Scene = new SceneScript("Quardent: D2", "D2");
+        _D3Scene = new SceneScript("Quardent: D3", "D3");
+        _D4Scene = new SceneScript("Quardent: D4", "D4");
+        _D5Scene = new SceneScript("Quardent: D5", "D5");
+        _E1Scene = new SceneScript("Quardent: E1", "E1");
+        _E2Scene = new SceneScript("Quardent: E2", "E2");
         _E3Scene = new SceneScript
             ("Quardent: E3 \n \n"+
             "AI:Good morning "+_PlayerName+", we have arrived. \n"+
-            "AI:It has been awhile since you have woken, why not type 'show help' to get the basics?");
-        _E4Scene = new SceneScript("Quardent: E4");
-        _E5Scene = new SceneScript("Quardent: E5");
+            "AI:It has been awhile since you have woken, why not type 'show help' to get the basics?", "E3");
+        _E4Scene = new SceneScript("Quardent: E4", "E4");
+        _E5Scene = new SceneScript("Quardent: E5", "E5");
     }
 	public void LinkGameScenes(){
 	

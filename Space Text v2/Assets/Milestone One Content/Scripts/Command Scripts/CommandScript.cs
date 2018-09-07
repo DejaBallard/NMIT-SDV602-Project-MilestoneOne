@@ -39,27 +39,33 @@ public class GoCommand : CommandScript {
 	public override void Do (CommandMapScript prCommand)
 	{
         Debug.Log("Do Command " + _direction);
+
 		SceneScript lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
+
 		switch(_direction){
 			case "up":
 			lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
-			if (lcScene._UpScene._SceneStory !=null)
-				GameManagerScript._Instance._GameModel._CurrentScene = lcScene._UpScene;
-			break;
+                if (lcScene._UpScene._SceneStory != null)
+                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                    GameManagerScript._Instance._GameModel._CurrentScene = lcScene._UpScene;
+                break;
 			case "down":
                 lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
                 if (lcScene._DownScene._SceneStory != null)
-				GameManagerScript._Instance._GameModel._CurrentScene = lcScene._DownScene;
+                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                GameManagerScript._Instance._GameModel._CurrentScene = lcScene._DownScene;
 			break;
 			case "left":
 			lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
 			if (lcScene._LeftScene._SceneStory !=null)
-				GameManagerScript._Instance._GameModel._CurrentScene = lcScene._LeftScene;
+                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                GameManagerScript._Instance._GameModel._CurrentScene = lcScene._LeftScene;
 			break;
 			case "right":
 			lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
 			if (lcScene._RightScene._SceneStory !=null)
-				GameManagerScript._Instance._GameModel._CurrentScene = lcScene._RightScene;
+                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                GameManagerScript._Instance._GameModel._CurrentScene = lcScene._RightScene;
 			break;
 		}
 		prCommand._Result = GameManagerScript._Instance._GameModel._CurrentScene._SceneStory;
@@ -123,19 +129,23 @@ public class ShowCommand : CommandScript
         switch (_Display){
 
             case "map":
-               GameManagerScript._Instance.SetActiveCanvas("Map Canvas");
-                    break;
+                lcResult = "";
+                GameManagerScript._Instance.SetActiveCanvas("Map Canvas");
+                break;
             case "inventory":
                 GameManagerScript._Instance.SetActiveCanvas("Inventory Canvas");
+                
                     break;
             case "terminal":
                 GameManagerScript._Instance.SetActiveCanvas("Main Canvas");
+                lcResult = GameManagerScript._Instance._GameModel._CurrentScene._SceneStory;
                     break;
             case "help":
                 lcResult = GameManagerScript._Instance._GameModel._CurrentScene._Help;
                 Debug.Log(lcResult);
                 break;
         }
+        
         prCommand._Result = lcResult;
     }
     //-------------------------------------- End Of Methods ----------------------------------------------------------------------------	

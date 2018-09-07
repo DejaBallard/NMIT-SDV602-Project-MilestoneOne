@@ -1,24 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//--------------------------------------- Start Of PlayerScript : Mono Class ------------------------------------------------------------------------------
-public class PlayerScript : MonoBehaviour {
+//--------------------------------------- Start Of  : Mono Class ------------------------------------------------------------------------------
+public class GameItemScript : MonoBehaviour {
     //--------------------------------------- Start Of Top Level Variable Decalaring ------------------------------------------------------------
-    public string _PlayerName;
-    public Dictionary<string, GameItemScript> _InventoryItemDic;
-    public string _InventoryList;
+    public string _Name;
 
     //--------------------------------------- End Of Top Level Variable Declaring ---------------------------------------------------------
 
 
     //-------------------------------------- Start Of Methods ----------------------------------------------------------------------------	
     // Use this for initialization
-    public PlayerScript()
+    public GameItemScript(string prName)
     {
-        _InventoryItemDic = new Dictionary<string, GameItemScript>();
-        GameItemScript _Keys = new GameItemScript("Keys");
-        _InventoryItemDic.Add("Keys", _Keys);
-        _PlayerName = "Boss";
+        _Name = prName;
+    }
+    void Start()
+    {
 
     }
     // Update is called once per frame

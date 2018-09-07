@@ -15,6 +15,7 @@ public class GameManagerScript : MonoBehaviour {
     public InputField _MainInput;
     public InputField _MapInput;
     public InputField _InvInput;
+    public Animator _StarAnim;
     private bool _gameRunning;
 	//--------------------------------------- End Of Top Level Variable Declaring ---------------------------------------------------------
 	

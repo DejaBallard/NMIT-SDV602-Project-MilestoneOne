@@ -7,7 +7,8 @@ public class SceneScript : MonoBehaviour {
 	public string _SceneStory;
     public string _Items;
     public string _Help;
- 
+    public string _Name;
+
 	public SceneScript _UpScene;
 	public SceneScript _DownScene;
 	public SceneScript _LeftScene;
@@ -17,8 +18,9 @@ public class SceneScript : MonoBehaviour {
 	
 	
 	//-------------------------------------- Start Of Methods ----------------------------------------------------------------------------	
-	public SceneScript(string prStory){
+	public SceneScript(string prStory, string prName){
 		_SceneStory = prStory;
+        _Name = prName;
         _Help = "Show: \n" +
                 "Map \n" +
                 "Invetory \n" +

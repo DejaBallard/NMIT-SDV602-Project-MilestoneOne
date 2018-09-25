@@ -39,38 +39,79 @@ public class GoCommand : CommandScript {
 	public override void Do (CommandMapScript prCommand)
 	{
         Debug.Log("Do Command " + _direction);
-
+        TurnOffEvent();
 		SceneScript lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
-
+        Debug.Log(GameManagerScript._Instance._StarAnim);
 		switch(_direction){
 			case "up":
 			lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
                 if (lcScene._UpScene._SceneStory != null)
-                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                    HasEvent(lcScene._UpScene._Event);
                     GameManagerScript._Instance._GameModel._CurrentScene = lcScene._UpScene;
                 break;
 			case "down":
-                lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
-                if (lcScene._DownScene._SceneStory != null)
-                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
-                GameManagerScript._Instance._GameModel._CurrentScene = lcScene._DownScene;
-			break;
+                
+                    lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
+                    if (lcScene._DownScene._SceneStory != null)
+                        HasEvent(lcScene._DownScene._Event);
+                        GameManagerScript._Instance._GameModel._CurrentScene = lcScene._DownScene;
+                    break;
+                
 			case "left":
 			lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
 			if (lcScene._LeftScene._SceneStory !=null)
-                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                HasEvent(lcScene._LeftScene._Event);
                 GameManagerScript._Instance._GameModel._CurrentScene = lcScene._LeftScene;
-			break;
+                break;
 			case "right":
 			lcScene = GameManagerScript._Instance._GameModel._CurrentScene;
 			if (lcScene._RightScene._SceneStory !=null)
-                    GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                HasEvent(lcScene._RightScene._Event);
                 GameManagerScript._Instance._GameModel._CurrentScene = lcScene._RightScene;
-			break;
+                break;
 		}
-		prCommand._Result = GameManagerScript._Instance._GameModel._CurrentScene._SceneStory;
-		
+        if (GameManagerScript._Instance._GameModel._CurrentScene._Visited == true)
+        {
+            prCommand._Result = GameManagerScript._Instance._GameModel._CurrentScene._SceneNotScannedDescription;
+        }else
+        {
+            GameManagerScript._Instance._GameModel._CurrentScene._Visited = true;
+            prCommand._Result = GameManagerScript._Instance._GameModel._CurrentScene._SceneStory;
+        }
 	}
+
+    public void HasEvent(string prEvent)
+    {
+        switch (prEvent)
+        {
+            case "Planet":
+                GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                GameManagerScript._Instance._PlanetAnim.SetBool("ShipArrived", true);
+                GameManagerScript._Instance._StarAnim.SetBool("Stop", true);
+                break;
+            case "Shop":
+                GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                GameManagerScript._Instance._StarAnim.SetBool("Stop", true);
+                break;
+            case "Enemy":
+                GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                GameManagerScript._Instance._StarAnim.SetBool("Stop", true);
+                break;
+            case "BrokenShip":
+                GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                GameManagerScript._Instance._StarAnim.SetBool("Stop", true);
+                break;
+            default:
+                GameManagerScript._Instance._StarAnim.SetTrigger("Warp");
+                break;
+        }
+
+    }
+    public void TurnOffEvent()
+    {
+        GameManagerScript._Instance._StarAnim.SetBool("Stop", false);
+        GameManagerScript._Instance._PlanetAnim.SetBool("ShipArrived", false);
+    }
 	//-------------------------------------- End Of Methods ----------------------------------------------------------------------------	
 }
 //------------------------------------------ End Of GoCommand : CommandScript Class -------------------------------------------------------------------------------
@@ -142,7 +183,6 @@ public class ShowCommand : CommandScript
                     break;
             case "help":
                 lcResult = GameManagerScript._Instance._GameModel._CurrentScene._Help;
-                Debug.Log(lcResult);
                 break;
         }
         
@@ -156,4 +196,37 @@ public class ShowCommand : CommandScript
 
 
 
+//--------------------------------------- Start Of ScanCommandScript : CommandScript Class ------------------------------------------------------------------------------
+public class ScanCommand : CommandScript
+{
+    //--------------------------------------- Start Of Top Level Variable Decalaring ------------------------------------------------------------
+    private string _Scan;
 
+    //--------------------------------------- End Of Top Level Variable Declaring ---------------------------------------------------------
+
+
+    //-------------------------------------- Start Of Methods ----------------------------------------------------------------------------	
+    public ScanCommand(string prScan)
+    {
+        _Scan = prScan;
+    }
+
+    public override void Do(CommandMapScript prCommand)
+    {
+        string lcResult = "What are you wanting to scan?";
+
+        switch (_Scan)
+        {
+            case "area":
+                lcResult = "AI: Scanning Area \n" +
+                            GameManagerScript._Instance._GameModel._CurrentScene._Scan + "\n" +
+                            "Items found \n" +
+                            GameManagerScript._Instance._GameModel._CurrentScene.AllItems();
+                Debug.Log(GameManagerScript._Instance._GameModel._CurrentScene._Item._Name);
+                break;
+                //-------------------------------------- End Of Methods ----------------------------------------------------------------------------	
+        }
+        prCommand._Result = lcResult;
+    }
+}
+//------------------------------------------ End Of ScanCommand : CommandScript Class-------------------------------------------------------------------------------

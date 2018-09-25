@@ -38,7 +38,7 @@ public class InputScript : MonoBehaviour {
 		string lcCurrentText = _TxtOutput.text;
 		CommandProccessorScript lcCommandPro = new CommandProccessorScript();
 			//text being checked with command proccessor
-			_TxtOutput.text = lcCurrentText+"\n"+ lcCommandPro.Parse(prArg)+"\n";
+			_TxtOutput.text = lcCommandPro.Parse(prArg);
 			//Reset input field to blank
 			_inputField.text = "";
 			//Allow input to be used again

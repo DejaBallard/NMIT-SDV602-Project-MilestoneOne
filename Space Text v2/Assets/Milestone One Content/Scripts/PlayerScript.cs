@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour {
     //--------------------------------------- Start Of Top Level Variable Decalaring ------------------------------------------------------------
     public string _PlayerName;
+    public int _PlayerHealth;
+    public int _PlayerScore;
     public Dictionary<string, GameItemScript> _InventoryItemDic;
     public string _InventoryList;
 

@@ -23,6 +23,8 @@ public class CommandMapScript : MonoBehaviour {
         _commandsDic.Add("show terminal", new ShowCommand("terminal"));
         _commandsDic.Add("show inventory", new ShowCommand("inventory"));
         _commandsDic.Add("show help", new ShowCommand("help"));
+        _commandsDic.Add("pick up", new PickCommand("up"));
+        _commandsDic.Add("scan area", new ScanCommand("area"));
 	}
 	
 	// Use this for initialization

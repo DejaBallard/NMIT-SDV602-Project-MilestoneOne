@@ -33,7 +33,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1104302786494906}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 237.46793, y: 121.240814, z: 4.375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -52,7 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _GameModel: {fileID: 0}
+  _Player: {fileID: 0}
   _ActiveCanvas: {fileID: 0}
   _MainInput: {fileID: 0}
   _MapInput: {fileID: 0}
   _InvInput: {fileID: 0}
+  _StarAnim: {fileID: 0}
+  _PlanetAnim: {fileID: 0}

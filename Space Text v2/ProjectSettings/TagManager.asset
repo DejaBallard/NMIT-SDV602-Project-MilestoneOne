@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Inventory
+  - Map
+  - Terminal
+  - Main
+  - Planet
+  - Stars
   layers:
   - Default
   - TransparentFX

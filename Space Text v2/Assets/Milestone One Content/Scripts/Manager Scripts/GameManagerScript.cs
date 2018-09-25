@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ public class GameManagerScript : MonoBehaviour {
     public InputField _MapInput;
     public InputField _InvInput;
     public Animator _StarAnim;
+    public Animator _PlanetAnim;
+    public string _StartCanvas;
     private bool _gameRunning;
 	//--------------------------------------- End Of Top Level Variable Declaring ---------------------------------------------------------
 	
@@ -25,21 +28,25 @@ public class GameManagerScript : MonoBehaviour {
 	void Awake(){
 	//if game manager hasn't been created yet
 		if (_Instance ==null){
-			_Instance = this;
+            Debug.Log(name + ": Created");
+            _Instance = this;
 			_gameRunning = true;
+            attachObjects();
             _Player = new PlayerScript();
             _GameModel = new GameModelScript();
             _CanvasDic = new Dictionary<string, Canvas>();
+
 		}
 		else {
 			Destroy (gameObject);
-			Debug.LogWarning (name +": Duplicate destoryed");
+            attachObjects();
+            Debug.LogWarning (name +": Duplicate destoryed");
 		}
 	}
     //Mono class that runs after awake
     private void Start()
     {
-        SetActiveCanvas("Main Canvas");
+        SetActiveCanvas(_StartCanvas);
     }
     //Chages the Active Cancvas
     public void SetActiveCanvas(string prCanvasName)
@@ -53,7 +60,10 @@ public class GameManagerScript : MonoBehaviour {
             _ActiveCanvas = _CanvasDic[prCanvasName];
             Debug.Log(name + ": Loaded Canvas: " + prCanvasName);
             _ActiveCanvas.gameObject.SetActive(true);
-            SetActiveInput();
+            try
+            {
+                SetActiveInput();
+            }catch(Exception e) { }
         }
         else Debug.LogError(name + ": " + prCanvasName + " doesn't exist within dictonary");
     }
@@ -80,8 +90,25 @@ public class GameManagerScript : MonoBehaviour {
 
     public void ChangeUnityScene(string prUnitySceneName)
     {
-        UnitySceneManager.SceneManager.LoadScene(prUnitySceneName);
+        UnitySceneManager.SceneManager.LoadScene("01_Game");
         Debug.Log(name + ": Loading " + prUnitySceneName);
+    }
+
+    private void attachObjects()
+    {
+        try
+        {
+            _MainInput = GameObject.FindGameObjectWithTag("Main").GetComponent<InputField>() as InputField;
+            _MapInput = GameObject.FindGameObjectWithTag("Map").GetComponent<InputField>() as InputField;
+            _InvInput = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InputField>() as InputField;
+            _StarAnim = GameObject.FindGameObjectWithTag("Stars").GetComponent<Animator>() as Animator;
+            _PlanetAnim = GameObject.FindGameObjectWithTag("Planet").GetComponent<Animator>() as Animator;
+            Debug.Log(name + ": All objects attached");
+        }
+        catch (Exception e)
+        {
+            Debug.Log(name + ": Objects didn't attach");
+        }
     }
     //-------------------------------------- End Of Methods ----------------------------------------------------------------------------	
 }

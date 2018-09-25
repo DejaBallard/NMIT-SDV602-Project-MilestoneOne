@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameItemScript : MonoBehaviour {
     //--------------------------------------- Start Of Top Level Variable Decalaring ------------------------------------------------------------
     public string _Name;
-
+    public GameItemScript _NextItem;
     //--------------------------------------- End Of Top Level Variable Declaring ---------------------------------------------------------
 
 

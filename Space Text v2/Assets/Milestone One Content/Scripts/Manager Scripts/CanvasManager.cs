@@ -5,7 +5,7 @@ using UnityEngine;
 public class CanvasManager : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         //-------------- Adding canvas's to instance -----------------
         Canvas[] _CanvasArray = gameObject.GetComponentsInChildren<Canvas>();
         foreach (Canvas iCanvas in _CanvasArray) {
@@ -13,5 +13,4 @@ public class CanvasManager : MonoBehaviour {
             Debug.Log(name + ": " + iCanvas.name + " has been added to GameManager");
         }
 	}
-	
 }
